@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Diario El Mañana - Portal Simulado</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #eaeff2; color: #333; }
+        .container { width: 85%; max-width: 1200px; margin: 0 auto; background-color: #ffffff; padding: 20px; box-shadow: 0px 4px 12px rgba(0,0,0,0.1); }
+        header { text-align: center; padding: 30px 0; border-bottom: 3px solid #2c3e50; margin-bottom: 20px; }
+        h1 { margin: 0; color: #2c3e50; }
+        
+        /* Estilos de Banners Publicitarios */
+        .banner { background-color: #ffeaa7; border: 2px dashed #e17055; display: flex; align-items: center; justify-content: center; text-align: center; color: #e17055; font-weight: bold; margin-bottom: 20px; font-size: 14px; }
+        .leaderboard { width: 728px; height: 90px; margin: 20px auto; }
+        .skyscraper { width: 160px; height: 600px; margin: 0 auto; }
+        .medium-rectangle { width: 300px; height: 250px; margin: 20px auto; float: right; margin-left: 20px; }
+        
+        /* Estructura de Contenido */
+        .content-area { display: flex; gap: 30px; }
+        .main-content { flex: 3; line-height: 1.6; text-align: justify; }
+        .sidebar { flex: 1; background-color: #fdfdfd; padding: 15px; border-left: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Diario El Mañana</h1>
+            <p>La actualidad tecnológica e innovación al alcance de un clic.</p>
+        </header>
+
+        <div class="banner leaderboard" id="promo-header">
+            ESPACIO PUBLICITARIO<br>LEADERBOARD (728x90)
+        </div>
+
+        <div class="content-area">
+            <main class="main-content">
+                <article>
+                    <h2>El futuro de la Inteligencia Artificial en la Educación</h2>
+                    <p>La implementación de sistemas inteligentes en las aulas de clase está transformando la manera en que los estudiantes absorben la información. Los tutores virtuales son cada vez más precisos y empáticos.</p>
+                    
+                    <div class="banner medium-rectangle" id="promo-inline">
+                        ESPACIO PUBLICITARIO<br>MEDIUM RECTANGLE (300x250)
+                    </div>
+                    
+                    <p>Por otro lado, los docentes reportan que estas herramientas les permiten reducir el tiempo dedicado a tareas administrativas, enfocándose de lleno en el diseño de experiencias de aprendizaje activo. La adopción de estas tecnologías, sin embargo, requiere infraestructura adecuada y capacitación constante para evitar brechas digitales.</p>
+                    <p>Se espera que para el próximo año escolar, más del 40% de las instituciones de educación superior incorporen plataformas adaptativas impulsadas por modelos de lenguaje de gran escala.</p>
+                </article>
+            </main>
+            
+            <aside class="sidebar">
+                <h3>Lo más leído</h3>
+                <ul>
+                    <li>Lanzamiento de nuevo procesador</li>
+                    <li>Ciberseguridad corporativa</li>
+                    <li>Tendencias en UX/UI 2026</li>
+                </ul>
+                <br>
+                <div class="banner skyscraper" id="promo-sidebar">
+                    ESPACIO PUBLICITARIO<br>SKYSCRAPER<br>(160x600)
+                </div>
+            </aside>
+        </div>
+    </div>
+</body>
+</html>
