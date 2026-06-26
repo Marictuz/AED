@@ -1,100 +1,941 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Académica · Servicios académicos</title>
+  <!-- Fuente y Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-KTX4D8Z8X2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1e293b;
+      background: #f8fafc;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
 
-  gtag('config', 'G-KTX4D8Z8X2');
-</script>
-<!-- Google tag (gtag.js) -->
-    
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplicación de Estrategias Digitales</title>
-    <link rel="stylesheet" href="styles.css">
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== BOTÓN ===== */
+    .btn {
+      display: inline-block;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      padding: 14px 36px;
+      border-radius: 40px;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+      text-align: center;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #2563eb;
+      box-shadow: none;
+      border: 2px solid #2563eb;
+      padding: 12px 32px;
+    }
+
+    .btn-outline:hover {
+      background: #2563eb;
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-white {
+      background: #fff;
+      color: #2563eb;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .btn-white:hover {
+      background: #f1f5f9;
+      transform: translateY(-3px);
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+
+    .logo {
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #0f172a;
+    }
+
+    .logo span {
+      color: #2563eb;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: #334155;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    .nav-links .btn-nav {
+      background: #2563eb;
+      color: #fff;
+      padding: 10px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: 0.2s;
+    }
+
+    .nav-links .btn-nav:hover {
+      background: #1d4ed8;
+      color: #fff;
+      transform: scale(1.02);
+    }
+
+    /* Hamburguesa */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: #1e293b;
+      border-radius: 10px;
+      transition: 0.25s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 140px 0 80px;
+      background: linear-gradient(145deg, #f1f5f9 0%, #e2e8f0 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      color: #0f172a;
+      margin-bottom: 20px;
+    }
+
+    .hero-content h1 span {
+      color: #2563eb;
+      position: relative;
+    }
+
+    .hero-content h1 span::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 4px;
+      width: 100%;
+      height: 12px;
+      background: rgba(37, 99, 235, 0.15);
+      border-radius: 10px;
+      z-index: -1;
+    }
+
+    .hero-content p {
+      font-size: 1.15rem;
+      color: #475569;
+      max-width: 500px;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-image .illustration {
+      width: 100%;
+      max-width: 480px;
+      background: #fff;
+      border-radius: 40px;
+      padding: 20px 20px 10px 20px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(4px);
+      transition: transform 0.4s ease;
+    }
+
+    .hero-image .illustration:hover {
+      transform: translateY(-8px);
+    }
+
+    .hero-image .illustration i {
+      font-size: 5rem;
+      color: #2563eb;
+      margin-bottom: 12px;
+    }
+
+    .hero-image .illustration h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .hero-image .illustration p {
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    /* ===== SECCIÓN SERVICIOS ===== */
+    .services {
+      padding: 80px 0;
+      background: #fff;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+    }
+
+    .section-header h2 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #0f172a;
+    }
+
+    .section-header h2 span {
+      color: #2563eb;
+    }
+
+    .section-header p {
+      color: #64748b;
+      font-size: 1.05rem;
+      margin-top: 12px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 32px;
+    }
+
+    .service-card {
+      background: #f8fafc;
+      padding: 36px 28px;
+      border-radius: 28px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .service-card:hover {
+      background: #ffffff;
+      border-color: #e2e8f0;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+      transform: translateY(-6px);
+    }
+
+    .service-card .icon {
+      width: 72px;
+      height: 72px;
+      background: #dbeafe;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+      color: #2563eb;
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .service-card p {
+      color: #64748b;
+      font-size: 0.95rem;
+    }
+
+    /* ===== BENEFICIOS ===== */
+    .benefits {
+      padding: 80px 0;
+      background: #f1f5f9;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      margin-top: 20px;
+    }
+
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #fff;
+      padding: 20px 24px;
+      border-radius: 60px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      transition: 0.2s;
+    }
+
+    .benefit-item:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+      transform: scale(1.01);
+    }
+
+    .benefit-item i {
+      font-size: 1.5rem;
+      color: #2563eb;
+      width: 40px;
+      text-align: center;
+    }
+
+    .benefit-item span {
+      font-weight: 500;
+    }
+
+    /* ===== TESTIMONIOS ===== */
+    .testimonials {
+      padding: 80px 0;
+      background: #fff;
+    }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .testimonial-card {
+      background: #f8fafc;
+      padding: 32px 28px;
+      border-radius: 28px;
+      border: 1px solid #eef2f6;
+      transition: 0.25s;
+    }
+
+    .testimonial-card:hover {
+      background: #fff;
+      border-color: #dbeafe;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .testimonial-card .stars {
+      color: #f59e0b;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .testimonial-card blockquote {
+      font-size: 1rem;
+      color: #1e293b;
+      font-weight: 500;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .testimonial-card .author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-card .author .avatar {
+      width: 44px;
+      height: 44px;
+      background: #dbeafe;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #2563eb;
+      font-size: 1rem;
+    }
+
+    .testimonial-card .author .name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .testimonial-card .author .role {
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    /* ===== CTA ===== */
+    .cta {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #fff;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+
+    .cta .btn-white {
+      font-size: 1.05rem;
+      padding: 16px 44px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0f172a;
+      color: #cbd5e1;
+      padding: 48px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand h3 span {
+      color: #2563eb;
+    }
+
+    .footer-brand p {
+      font-size: 0.95rem;
+      max-width: 280px;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover {
+      color: #2563eb;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #1e293b;
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.85rem;
+    }
+
+    .footer-social a {
+      display: inline-block;
+      margin-left: 18px;
+      font-size: 1.1rem;
+      color: #94a3b8;
+      transition: 0.2s;
+    }
+
+    .footer-social a:hover {
+      color: #2563eb;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .hero-image .illustration {
+        max-width: 360px;
+        margin: 0 auto;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: center;
+        gap: 28px;
+        clip-path: circle(0% at 100% 0%);
+        transition: clip-path 0.5s ease;
+        pointer-events: none;
+        padding: 40px;
+      }
+
+      .nav-links.open {
+        clip-path: circle(150% at 50% 50%);
+        pointer-events: all;
+      }
+
+      .nav-links a {
+        font-size: 1.2rem;
+      }
+
+      .hamburger {
+        display: flex;
+        z-index: 1001;
+      }
+
+      .hero {
+        padding: 120px 0 60px;
+      }
+
+      .hero-content h1 {
+        font-size: 2.4rem;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-social a {
+        margin: 0 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      .btn {
+        padding: 12px 28px;
+        font-size: 0.9rem;
+      }
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+      .service-card {
+        padding: 28px 20px;
+      }
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>Aplicación de Estrategias Digitales</h1>
-    </header>
-    <main>
-        <section id="presentacion">
-            <h2>Presentación</h2>
-            <iframe src="https://slides.com/alfredo-jesus-gutierrez/desk-53cedd/embed" width="576" height="420" title="Aplicación de Estrategias Digitales" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        </section>
-        <section id="recursos">
-            <h2>Recursos</h2>
-            <ul>
-                <li><a href="https://www.frexus.dev/lineamientos-de-clase/">Lineamientos</a></li>
-                <li><a href="https://www.frexus.dev/politicas/">Políticas</a></li>
-                <li><a href="https://www.frexus.dev/recomendaciones/">Recomendaciones para la entrega de trabajos / actividades / proyectos</a></li>
-            </ul>
-        </section>
-      <section>
-        <h2>Vídeos recomendados</h2>
-        <ul>
-          <li>
-            <a href="https://youtu.be/n0Ro6eSKkuU" target="_blank">Crear una cuenta en google Analytics</a>
-          </li>
-          <li>
-            <a href="https://youtu.be/k3z8-ucjhoI" target="_blank">Crea un repositorio en github</a>
-          </li>
-          <li>
-            <a href="https://youtu.be/aPxSUXnAvD4" target="_blank">El fichero</a>
-          </li>
-          <li>
-            <a href="https://youtu.be/NiC4Wipq0fo" target="_blank">la configuración</a>
-          </li>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">Acad<span>émica</span></div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#contacto" class="btn-nav">Contacto</a></li>
         </ul>
-      </section>
-        <section id="actividades">
-            <h2>Actividades</h2>
-            <ul>
-                <li><a href="https://ajgutierrez.medium.com/del-sue%C3%B1o-local-al-%C3%A9xito-digital-60895b0a5343" target="_blank">Éxito digital</a></li>
-                <li><a href="https://ajgutierrez.medium.com/env%C3%ADo-de-e-mail-en-html-con-python-2c19293aad3f" target="_blank">Envia un Email</a></li>
-              <li>
-                <a href="https://ajgutierrez.medium.com/del-local-al-imperio-digital-b91f6a23bc98" target="_blank">El imperio digital</a>
-              </li>
-              <li>
-                <a href="https://ajgutierrez.medium.com/del-anonimato-a-la-primera-p%C3%A1gina-745d42c5932f" target="_blank">El anonimato</a>
-              </li>
-              <li>
-                <a href="https://ajgutierrez.medium.com/click-impacto-y-conversi%C3%B3n-5499de260b4b" target="_blank">clic</a>
-              </li>
-            </ul>
-        </section>
-        <section id="Herramientas">
-            <h2>Herramientas</h2>
-            <ul>
-                <li><a href="https://frexus.dev/auto_eva/">AutoEvaluación</a></li>
-              <li>
-                <a href="analytics.google.com" target="_blank">Google Analytics</a>
-              </li>
-              <li>
-                <a href="https://www.hootsuite.com/es/social-media-tools" target="_blank">Herramientas para R.S.</a>
-              </li>
-              <li>
-                <a href="https://github.com/socioboard/Socioboard-5.0" target="_blank"> Fuente Socioboard-5.0</a>
-              </li>
-              <li>
-                <a href="https://socioboard.com/" target="_blank">Web SocioBoard</a>
-              </li>
-              <li>
-                <a href="https://mixpost.app/pricing" target="_blank">Mixpost</a>
-              </li>
-              <li>
-                <a href="https://github.com/gitroomhq/postiz-app" target="_blank">Postiz</a>
-              </li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025. Todos los derechos reservados.</p>
-    </footer>
+        <button class="hamburger" id="hamburger" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="inicio">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1>Impulsa tu futuro <br>con <span>educación</span> de excelencia</h1>
+          <p>Ofrecemos servicios académicos personalizados para estudiantes, profesionales e instituciones. Asesoría, preparación y recursos para alcanzar tus metas.</p>
+          <div class="hero-buttons">
+            <a href="#contacto" class="btn">Solicita información</a>
+            <a href="#servicios" class="btn btn-outline">Conoce más</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <div class="illustration">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>+5.000 estudiantes</h3>
+            <p>han confiado en nuestra metodología</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICIOS ===== -->
+  <section class="services" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <h2>Servicios <span>académicos</span> integrales</h2>
+        <p>Desde asesoría personalizada hasta preparación para exámenes, te acompañamos en cada paso.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="icon"><i class="fas fa-user-graduate"></i></div>
+          <h3>Asesoría personalizada</h3>
+          <p>Acompañamiento uno a uno con expertos en tu área de estudio.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon"><i class="fas fa-book-open"></i></div>
+          <h3>Preparación de exámenes</h3>
+          <p>Entrenamiento intensivo para pruebas de admisión, certificaciones y oposiciones.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+          <h3>Clases y talleres</h3>
+          <p>Grupos reducidos con metodologías activas y materiales actualizados.</p>
+        </div>
+        <div class="service-card">
+          <div class="icon"><i class="fas fa-file-alt"></i></div>
+          <h3>Revisión de trabajos</h3>
+          <p>Corrección y mejora de tesis, monografías, ensayos y proyectos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BENEFICIOS ===== -->
+  <section class="benefits" id="beneficios">
+    <div class="container">
+      <div class="section-header">
+        <h2>¿Por qué <span>elegirnos</span>?</h2>
+        <p>Beneficios que marcan la diferencia en tu trayectoria académica.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-item"><i class="fas fa-chart-line"></i><span>Resultados comprobados</span></div>
+        <div class="benefit-item"><i class="fas fa-user-tie"></i><span>Profesores expertos</span></div>
+        <div class="benefit-item"><i class="fas fa-clock"></i><span>Horarios flexibles</span></div>
+        <div class="benefit-item"><i class="fas fa-hand-holding-heart"></i><span>Atención personalizada</span></div>
+        <div class="benefit-item"><i class="fas fa-globe-americas"></i><span>Metodología internacional</span></div>
+        <div class="benefit-item"><i class="fas fa-certificate"></i><span>Certificación oficial</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIOS ===== -->
+  <section class="testimonials" id="testimonios">
+    <div class="container">
+      <div class="section-header">
+        <h2>Lo que dicen <span>nuestros</span> alumnos</h2>
+        <p>Historias de éxito que nos inspiran a seguir mejorando.</p>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <blockquote>“Gracias a Académica logré aprobar el examen de admisión con el mejor puntaje. La asesoría fue clave.”</blockquote>
+          <div class="author">
+            <div class="avatar">M</div>
+            <div><div class="name">María González</div><div class="role">Estudiante de Ingeniería</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <blockquote>“Los talleres de redacción me ayudaron a publicar mi primer artículo científico. Excelente nivel.”</blockquote>
+          <div class="author">
+            <div class="avatar">J</div>
+            <div><div class="name">Javier Pérez</div><div class="role">Investigador</div></div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <blockquote>“Mis hijos mejoraron sus calificaciones y su confianza. La metodología es muy efectiva.”</blockquote>
+          <div class="author">
+            <div class="avatar">C</div>
+            <div><div class="name">Carmen Ruiz</div><div class="role">Madre de familia</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta" id="contacto">
+    <div class="container">
+      <h2>Comienza hoy tu camino al éxito</h2>
+      <p>Déjanos tus datos y uno de nuestros asesores te contactará para ofrecerte la mejor solución académica.</p>
+      <a href="#" class="btn btn-white"><i class="fas fa-paper-plane" style="margin-right: 10px;"></i>Quiero más información</a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Acad<span>émica</span></h3>
+          <p>Transformamos vidas a través de la educación. Más de 10 años acompañando a estudiantes y profesionales.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Servicios</h4>
+          <ul>
+            <li><a href="#servicios">Asesoría</a></li>
+            <li><a href="#servicios">Preparación</a></li>
+            <li><a href="#servicios">Clases</a></li>
+            <li><a href="#servicios">Revisión</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Acerca de</h4>
+          <ul>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Metodología</a></li>
+            <li><a href="#">Equipo</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><i class="fas fa-phone" style="margin-right: 8px; color: #2563eb;"></i> +34 900 123 456</li>
+            <li><i class="fas fa-envelope" style="margin-right: 8px; color: #2563eb;"></i> info@academica.es</li>
+            <li><i class="fas fa-map-marker-alt" style="margin-right: 8px; color: #2563eb;"></i> Madrid, España</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Académica. Todos los derechos reservados.</span>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    (function() {
+      // Menú hamburguesa
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navLinks');
+
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function() {
+          this.classList.toggle('active');
+          navLinks.classList.toggle('open');
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        navLinks.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('open');
+          });
+        });
+      }
+
+      // Cerrar menú al hacer scroll (opcional)
+      let scrollTimeout;
+      window.addEventListener('scroll', function() {
+        if (navLinks.classList.contains('open')) {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            hamburger.classList.remove('active');
+            navLinks.classList.remove('open');
+          }, 300);
+        }
+      });
+
+      // Smooth scroll para todos los enlaces internos (polyfill sencillo)
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Cambiar opacidad del header al hacer scroll (efecto sutil)
+      const header = document.querySelector('header');
+      let lastScroll = 0;
+      window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        if (currentScroll > 80) {
+          header.style.background = 'rgba(255, 255, 255, 0.95)';
+        } else {
+          header.style.background = 'rgba(255, 255, 255, 0.85)';
+        }
+        lastScroll = currentScroll;
+      });
+
+      // Contador animado simple en el hero (opcional)
+      // No se implementa para mantener simplicidad
+    })();
+  </script>
+
 </body>
 </html>
